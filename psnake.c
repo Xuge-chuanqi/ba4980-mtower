@@ -20,6 +20,8 @@
 #include	"mtower.h"
 
 
+
+
 /*游戏进入逃离模式,逃离模式时间,游戏完成标志,游戏结束标志,游戏初始化标志,退出游戏标志*/
 U8	g_GameMTNearEnd,g_GameMTDeadLine,g_GameMTEnd,g_GameMTGameOver,g_GameMTInit,g_GameMTQuit;
 /*获取用户输入,各个动画公用时间控制,英雄到达的最高层,英雄等级,现在逃离时间*/
@@ -37,6 +39,7 @@ U8	g_GameMTHeroDir,g_GameMTFloor,*g_GameMTCurMap;
 U32 g_GameMTHeroLife;
 /*当前判断单元指针*/
 U8	*g_GameMTJuidgeNow;
+
 
 extern	U8	GameMTUnitPic[][32];
 extern	U8	GameMTWorkPad[];
@@ -65,6 +68,21 @@ extern	U8	GameMTHappyEnd[];
 extern	U8	GameMTEagle[];
 extern	U8	GameMTHelpData[];
 
+
+
+/***********************************************************************
+ * 函数名:	GameMTTriggerPasswordInput
+ * 说明:		密码函数
+ * 输入参数:	无 
+ * 返回值  :	无
+ * 修改历史:
+ *              姓名              日期             说明
+ *             ------          ----------      -------------
+ *             旭哥传奇         2025.1.31        完成基本功能
+***********************************************************************/
+/* 触发密码输入的函数 */
+
+
 /***********************************************************************
  * 函数名:	GameMagicTower()
  * 说明:		游戏主程序
@@ -84,9 +102,10 @@ FAR U8 GameTanShiShe()
 	g_GameMTKBState=GuiGetKbdState();			/* 取键盘状态 */
 	GuiSetInputFilter(INPUT_ENG_ENABLE);
 	GuiSetKbdType(INPUT_ENG_ENABLE);
-	g_GameMTCurMap=SysMemAllocate(2662);
+	g_GameMTCurMap=SysMemAllocate(2783);        /* 加了一层要加121，原来是2662 */
 	SysTimer1Open(8);
-	
+
+
 	g_GameMTInit=TRUE;
 	g_GameMTQuit=FALSE;
 	while(1)
@@ -97,7 +116,10 @@ FAR U8 GameTanShiShe()
 			break;
 		}
 		if(g_GameMTInit)GameMTInit();
-		GameMTEvent();
+
+                GameMTEvent();    /* 正常事件 */
+
+		
 	}
 }
 
@@ -292,7 +314,7 @@ void	GameMTInit()
 	if(g_GameMTQuit)return;
 	GameMTGetMapData();
 	i=0;
-	while(i<2662)
+	while(i<2783) /*原来是2662，22*121*/
 	{
 		g_GameMTCurMap[i]-=40;
 		i++;
@@ -306,7 +328,7 @@ void	GameMTInit()
 		for(j=0;j<6;j++)
 			SysPicture(i*16,j*16,i*16+15,j*16+15,GameMTUnitPic[g_GameMTCurMap[g_GameMTFloor*121+(g_GameMTMapY+j)*11+g_GameMTMapX+i]],0);
 	SysPicture((g_GameMTHeroX-g_GameMTMapX)*16,(g_GameMTHeroY-g_GameMTMapY)*16,(g_GameMTHeroX-g_GameMTMapX)*16+15,(g_GameMTHeroY-g_GameMTMapY)*16+15,GameMTHeroPic[g_GameMTHeroDir],0);
-	g_GameMTCurMap[154]=33;
+	g_GameMTCurMap[275]=33;  /*原来是154，可能是1层的某个事件*/
 }
 
 /***********************************************************************

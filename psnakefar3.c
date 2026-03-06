@@ -1,6 +1,19 @@
 #include 	"inc\dictsys.h"
 #include	"mtower.h"
 
+/***********************************************************************
+ * 函数名:	GameMTPasswordInput()
+ * 说明:		密码输入函数
+ * 输入参数:	无
+ * 返回值  :	无
+ * 修改历史:
+ *              姓名              日期             说明
+ *             ------          ----------      -------------
+ *             旭哥传奇         2026.1.30        完成基本功能
+***********************************************************************/
+/* 密码输入界面主函数：处理9位密码的输入、验证及游戏逻辑 */
+
+
 extern U8	g_GameMTNearEnd,g_GameMTDeadLine,g_GameMTEnd,g_GameMTGameOver,g_GameMTInit,g_GameMTQuit;
 extern U8	g_GameMTReadKey,g_GameMTTimeOut,g_GameMTTopFloor,g_GameMTHeroLv,g_GameMTCurTime;
 extern U16	g_GameMTKBState;
@@ -10,6 +23,7 @@ extern U16	g_GameMTHeroDamige,g_GameMTHeroDefence,g_GameMTHeroMoney,g_GameMTHero
 extern U8	g_GameMTHeroDir,g_GameMTFloor,*g_GameMTCurMap;
 extern U32 g_GameMTHeroLife;
 extern U8	*g_GameMTJuidgeNow;
+
 
 extern	U8	GameMTUnitPic[][32];
 extern	U8	GameMTWorkPad[];
@@ -37,6 +51,8 @@ extern	U8	GameMTMainFace[];
 extern	U8	GameMTHappyEnd[];
 extern	U8	GameMTEagle[];
 
+
+
 /***********************************************************************
  * 函数名:	GameMTEvent()
  * 说明:		游戏事件处理主函数
@@ -49,6 +65,9 @@ extern	U8	GameMTEagle[];
 ***********************************************************************/
 FAR void	GameMTEvent()
 {
+    
+
+
 		U8	temp[20];
 		U8	*g_GameMTJuidgeNow;
 		GameMTGetInput();
@@ -96,11 +115,11 @@ FAR void	GameMTEvent()
 					SysPicture((g_GameMTHeroX-g_GameMTMapX)*16,(g_GameMTHeroY-g_GameMTMapY)*16,(g_GameMTHeroX-g_GameMTMapX)*16+15,(g_GameMTHeroY-g_GameMTMapY)*16+15,GameMTHeroPic[g_GameMTHeroDir],0);
 					break;
 			case	6:
-					if(g_GameMTCurMap[1089]!=18)GameMTChaFloor();
+					if(g_GameMTCurMap[1210]!=18)GameMTChaFloor();
 					/*GameMTTalk(5,246,1);
 					GameMTBattle(0);
 					g_GameMTFloor++;
-					if(g_GameMTFloor==22)g_GameMTFloor=0;
+					if(g_GameMTFloor==23)g_GameMTFloor=0;
 					GameMTRefresh();*/
 					return;
 			case	7:
@@ -108,7 +127,7 @@ FAR void	GameMTEvent()
 					if(!GuiQueryBox(0,0,temp))g_GameMTQuit=TRUE;
 					break;
 			case	8:
-					if(g_GameMTCurMap[232]+1==1)GameMTCheckMon();
+					if(g_GameMTCurMap[353]+1==1)GameMTCheckMon();
 					return;
 			case	16:
 					if(g_GameMTNearEnd)GameMTReNewR();
@@ -172,7 +191,7 @@ FAR void	GameMTEvent()
 			case	5:
 				break;
 			case	6:
-				if(g_GameMTFloor==3)GameMTShop(5);
+				if(g_GameMTFloor==4)GameMTShop(5);
 				else GameMTShop(6);
 				break;
 			case	7:
@@ -199,7 +218,7 @@ FAR void	GameMTEvent()
 			case	11:
 				break;
 			case	12:
-				if(g_GameMTFloor==18&&g_GameMTCurMap[2298]+1==1)
+				if(g_GameMTFloor==19&&g_GameMTCurMap[2419]+1==1)
 				{
 					GameMTTalk(2,242,0);
 					GameMTTalk(2,244,0);
@@ -213,14 +232,14 @@ FAR void	GameMTEvent()
 					GameMTTalk(3,269,0);
 					GameMTTalk(5,272,1);
 					GameMTTalk(3,277,0);
-					g_GameMTCurMap[2298]=4;
+					g_GameMTCurMap[2419]=4;
 				}
-				else if(g_GameMTFloor==18&&g_GameMTCurMap[2298]==4)
+				else if(g_GameMTFloor==19&&g_GameMTCurMap[2419]==4)
 				{
 					GameMTTalk(2,280,0);
 					GameMTTalk(2,282,0);
 				}
-				else if(g_GameMTFloor==21&&g_GameMTCurMap[2557]==57)
+				else if(g_GameMTFloor==22&&g_GameMTCurMap[2678]==57)
 				{
 					GameMTTalk(2,302,0);
 					GameMTTalk(2,304,0);
@@ -229,11 +248,11 @@ FAR void	GameMTEvent()
 				{
 					GameMTTalk(2,352,0);
 					GameMTTalk(1,354,0);
-					g_GameMTCurMap[2555]=0;
+					g_GameMTCurMap[2676]=0;
 				}
 				break;
 			case	13:
-				if(g_GameMTFloor==4&&g_GameMTCurMap[309]==70)
+				if(g_GameMTFloor==5&&g_GameMTCurMap[430]==70)
 				{
 					GameMTTalk(2,149,0);
 					GameMTTalk(5,151,1);
@@ -247,30 +266,30 @@ FAR void	GameMTEvent()
 					GameMTTalk(5,173,1);
 					GameMTTalk(1,178,0);
 					GameMTTalk(3,179,0);
-					g_GameMTCurMap[309]=0;
+					g_GameMTCurMap[430]=0;
 				}
-				else if(g_GameMTFloor==4&&g_GameMTCurMap[309]+1=1&&g_GameMTCurMap[1462]==31)
+				else if(g_GameMTFloor==5&&g_GameMTCurMap[430]+1=1&&g_GameMTCurMap[1583]==31)
 				{
 					GameMTTalk(2,182,0);
 					GameMTTalk(2,184,0);
-					g_GameMTFloor=4;
+					g_GameMTFloor=5;
 				}
-				else if(g_GameMTFloor==4&&g_GameMTCurMap[309]+1=1&&g_GameMTCurMap[1462]+1==1)
+				else if(g_GameMTFloor==5&&g_GameMTCurMap[430]+1=1&&g_GameMTCurMap[1583]+1==1)
 				{
 					GameMTTalk(2,186,0);
 					GameMTTalk(4,188,0);
-					g_GameMTCurMap[2271]=0;
-					g_GameMTCurMap[2282]=0;
-					g_GameMTCurMap[489]=0;
-					g_GameMTFloor=4;
+					g_GameMTCurMap[2392]=0;
+					g_GameMTCurMap[2403]=0;
+					g_GameMTCurMap[610]=0;
+					g_GameMTFloor=5;
 				}
-				else if(g_GameMTFloor==21&&g_GameMTCurMap[2557]==57)
+				else if(g_GameMTFloor==22&&g_GameMTCurMap[2678]==57)
 				{
 					GameMTTalk(3,306,0);
 					GameMTTalk(4,309,0);
 					GameMTTalk(2,313,0);
 				}
-				else if(g_GameMTFloor==21&&g_GameMTCurMap[2557]+1==1&&g_GameMTCurMap[2555]==12)
+				else if(g_GameMTFloor==22&&g_GameMTCurMap[2557]+1==1&&g_GameMTCurMap[2676]==12)
 				{
 					GameMTTalk(2,356,0);
 					GameMTTalk(2,360,0);
@@ -279,13 +298,13 @@ FAR void	GameMTEvent()
 				{
 					GameMTTalk(2,356,0);
 					GameMTTalk(2,358,0);
-					g_GameMTCurMap[2622]=0;
-					g_GameMTCurMap[2624]=0;
-					g_GameMTCurMap[2559]=0;
+					g_GameMTCurMap[2743]=0;
+					g_GameMTCurMap[2745]=0;
+					g_GameMTCurMap[2680]=0;
 				}
 				break;
 			case	14:
-				if(g_GameMTFloor==2)
+				if(g_GameMTFloor==3)
 				{
 						GameMTTalk(2,132,0);
 						GameMTTalk(5,134,0);
@@ -297,9 +316,9 @@ FAR void	GameMTEvent()
 						*g_GameMTJuidgeNow=0;
 						GameMTReNewR();
 				}
-				if(g_GameMTFloor==5)GameMTShop(3);
-				if(g_GameMTFloor==12)GameMTShop(4);
-				if(g_GameMTFloor==15)
+				if(g_GameMTFloor==6)GameMTShop(3);
+				if(g_GameMTFloor==13)GameMTShop(4);
+				if(g_GameMTFloor==16)
 				{
 						GameMTTalk(5,206,1);
 						GameMTTalk(1,211,0);
@@ -325,7 +344,7 @@ FAR void	GameMTEvent()
 				}
 				break;
 			case	15:
-				if(g_GameMTFloor==2)
+				if(g_GameMTFloor==3)
 					{
 						GameMTTalk(2,115,0);
 						GameMTTalk(5,117,0);
@@ -337,9 +356,9 @@ FAR void	GameMTEvent()
 						*g_GameMTJuidgeNow=0;
 						GameMTReNewR();
 					}
-				if(g_GameMTFloor==5)GameMTShop(1);
-				if(g_GameMTFloor==13)GameMTShop(2);
-				if(g_GameMTFloor==15)
+				if(g_GameMTFloor==6)GameMTShop(1);
+				if(g_GameMTFloor==14)GameMTShop(2);
+				if(g_GameMTFloor==16)
 				{
 						GameMTTalk(5,192,1);
 						GameMTTalk(4,197,0);
@@ -394,7 +413,7 @@ FAR void	GameMTEvent()
 					g_GameMTCurMap[93]=0;
 					g_GameMTCurMap[92]=16;
 				}
-				else if(g_GameMTCurMap[896]==32)
+				else if(g_GameMTCurMap[1017]==32)
 				{
 					GameMTTalk(2,103,0);
 					GameMTTalk(2,105,0);
@@ -543,7 +562,7 @@ FAR void	GameMTEvent()
 				GameMTReNewR();
 				break;
 			case	57:
-				if(g_GameMTFloor==19)
+				if(g_GameMTFloor==20)
 				{
 					GameMTTalk(2,284,0);
 					GameMTTalk(5,286,0);
@@ -581,7 +600,7 @@ FAR void	GameMTEvent()
 				}
 				break;
 			case	47:
-				if(g_GameMTFloor==16)
+				if(g_GameMTFloor==17)
 				{
 					GameMTTalk(2,235,0);
 					GameMTTalk(3,237,0);
@@ -632,8 +651,18 @@ FAR void	GameMTEvent()
 				*g_GameMTJuidgeNow=0;
 				GameMTReNewR();
 				break;
+                                              
+
 			default:
-					GameMTMove();
+
+
+            if (*g_GameMTJuidgeNow >= 72) {            /* 受限于c文件的大小需要额外拓展一个c来写更多的事件-旭哥传奇 */
+                GameMTEventEx();  
+            } else {
+                GameMTMove();      
+            }
+            break;
+					
 		}
 		GameMTRefresh();
 		/*if(g_GameMTReadKey!=16)GameMTRefresh();*/
@@ -704,6 +733,7 @@ FAR void GameMTMainMenu()
 				GameMTTalk(3,487,0);
 				GameMTTalk(2,490,0);
 				GameMTTalk(2,492,0);
+                                GameMTTalk(4,494,0);
 			}
 		}
 	}
@@ -746,3 +776,4 @@ FAR void GameMTEnd()
 		GameMTTalk(2,387,0);
 	}
 }
+

@@ -5,7 +5,7 @@ const TypeDownAppHead dwnhead = {
     {
         FT_GAME,
         DICT_VER_A4980,
-        "Ä§    Ëþ",
+        "Ä§ËþÐñ",
         STR_CORP_NAME,
         TRUE,
         ""
