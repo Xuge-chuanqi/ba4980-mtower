@@ -54,7 +54,7 @@ FAR void GameMTChaFloor()
 	temp=0;
 	if(g_GameMTTopFloor==21)
 	{
-		GameMTTalk(2,494,0);
+		GameMTTalk(2,498,0);
 		return;
 	}
 	SysSaveScreen(7,1,121,94,g_GameMTBuf);
@@ -279,7 +279,7 @@ FAR U32	GameMTCountLose(U8 monster)
  *             ------          ----------      -------------
  *             罗博明           2005.1.25        完成基本功能
 ***********************************************************************/
-FAR	void GameMTShop(U8 kind)/*商店类型：小升级，大升级，买商人，卖商人，小神殿，大神殿*/
+FAR	void GameMTShop(U8 kind)/*商店类型：小升级，大升级，买商人，卖商人，小神殿，大神殿，旭哥*/
 {
 	U8	choice,temp[20],flag;
 	choice=0;
@@ -300,6 +300,8 @@ FAR	void GameMTShop(U8 kind)/*商店类型：小升级，大升级，买商人，卖商人，小神殿，
 			break;
 		case 6:
 			GameMTTalk(4,476,0);
+                                                break;
+                                
 	}
 	SysSaveScreen(0,5,158,89,g_GameMTBuf);
 	SysLcdPartClear(0,5,158,89);
@@ -336,6 +338,8 @@ FAR	void GameMTShop(U8 kind)/*商店类型：小升级，大升级，买商人，卖商人，小神殿，
 			GameMTGetTalk(480,temp);SysPrintString(6,11,temp);
 			GameMTGetTalk(481,temp);SysPrintString(6,30,temp);
 			GameMTGetTalk(482,temp);SysPrintString(6,49,temp);
+                                                break;
+		
 	}
 	GameMTGetTalk(454,temp);SysPrintString(6,68,temp);
 	SysRect(4,9,154,28);
@@ -422,6 +426,9 @@ FAR	void GameMTShop(U8 kind)/*商店类型：小升级，大升级，买商人，卖商人，小神殿，
 							flag=1;
 						}
 						else flag=3;
+						break;
+					
+
 				}
 			}
 			if(choice==1)
@@ -482,6 +489,7 @@ FAR	void GameMTShop(U8 kind)/*商店类型：小升级，大升级，买商人，卖商人，小神殿，
 						}
 						else flag=3;
 						break;
+					
 				}
 			}
 			if(choice==2)
@@ -541,6 +549,7 @@ FAR	void GameMTShop(U8 kind)/*商店类型：小升级，大升级，买商人，卖商人，小神殿，
 							flag=1;
 						}
 						else flag=3;
+					
 				}
 			}
 			if(choice==3)break;
@@ -562,6 +571,7 @@ FAR	void GameMTShop(U8 kind)/*商店类型：小升级，大升级，买商人，卖商人，小神殿，
 					SysMemcpy(temp,"    钥匙不足!\0",14);
 					GuiMsgBox(temp,50);
 					break;
+				
 			}
 		}
 	}

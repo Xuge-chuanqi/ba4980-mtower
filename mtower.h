@@ -19,5 +19,7 @@ FAR void GameMTGetMapData();
 FAR void	GameMTEvent();
 FAR void GameMTMainMenu();
 FAR void GameMTEnd();
+FAR void	GameMTEventEx();
+FAR	void GameMTxu(U8 kind);
 
 void	GameMTInit();
